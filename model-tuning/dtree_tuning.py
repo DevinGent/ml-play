@@ -134,3 +134,19 @@ cm_display = metrics.ConfusionMatrixDisplay(confusion_matrix = c_matrix, display
 cm_display.plot()
 print('The accuracy of the "best" model on the test data is {}%.'.format(100*metrics.accuracy_score(y_test, predicted)))
 plt.show() 
+# The "best" model ends up performing worse on the test data then the more generic models we tried.  
+# This looks like the gridsearch ended up with parameters which helped overfit the training data.
+
+# Just to experiment, let us see if changing the cv value on grid_search changes the result.
+grid_search2=GridSearchCV(estimator=tuning_tree, param_grid=parameters, cv=10, n_jobs=-1,verbose=1, scoring = "accuracy")
+grid_search2.fit(X_train,y_train)
+print(pd.DataFrame(grid_search2.cv_results_).nsmallest(5,'rank_test_score'))
+best_tree2=grid_search2.best_estimator_
+predicted=best_tree2.predict(X_test)
+c_matrix = metrics.confusion_matrix(y_test, predicted, labels=[0,1,2])
+# Here labels should include the elements we are inputting and their order should match the display labels below.
+cm_display = metrics.ConfusionMatrixDisplay(confusion_matrix = c_matrix, display_labels = ['Class 0', 'Class 1', 'Class 2'])
+cm_display.plot()
+print('The accuracy of the "best" model from the second search on the test data is {}%.'.format(100*metrics.accuracy_score(y_test, predicted)))
+plt.show() 
+# No improvement.
