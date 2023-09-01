@@ -51,6 +51,7 @@ c_matrix = metrics.confusion_matrix(y_test, predicted, labels=[0,1,2])
 cm_display = metrics.ConfusionMatrixDisplay(confusion_matrix = c_matrix, display_labels = ['Class 0', 'Class 1', 'Class 2'])
 cm_display.plot()
 print("The accuracy of this model on the test data is {}%.".format(100*metrics.accuracy_score(y_test, predicted)))
+plt.savefig('images\confusion-matrix.png')
 plt.show() 
 # We will compare this versus computing manually.
 print("Predicted classes:")
