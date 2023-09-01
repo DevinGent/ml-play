@@ -62,6 +62,7 @@ for (col,ax) in zip(df.drop('Class',axis=1),axs.flatten()):
 plt.tight_layout()
 # The graphs would be hard to read, so we add space between them
 fig.subplots_adjust(hspace=0.3,wspace=.2)
+plt.savefig('images/box-plots.png')
 plt.show()
 
 # We will look at a set of scatterplots to see how data may be related.
@@ -73,6 +74,7 @@ for ax in axes.flatten():
     ax.tick_params('x', labelrotation=0)
 
 plt.tight_layout()
+plt.savefig('images/scatter-matrix.png')
 plt.show()
 # Because there are so few datapoints in total (comparatively speaking) the result doesn't tell us too much visually.
 
@@ -85,6 +87,7 @@ print(corr_matrix)
 plt.figure(figsize=(6,5))
 sns.heatmap(corr_matrix, annot=True)
 plt.tight_layout()
+plt.savefig('images/correlation-matrix.png')
 plt.show()
 
 # Sepal Width has little correlation with any factor but Sepal Length, Petal Length, and Petal Width demonstrate more 
@@ -122,4 +125,5 @@ pielabels=['Class '+ str(i) for i in piedata.index]
 plt.pie(piedata,labels=pielabels,
         colors = sns.color_palette(), autopct='%.0f%%')
 plt.gcf().suptitle('50 Widest Sepal Width')
+plt.savefig('images/sepal-width-pie.png')
 plt.show()
