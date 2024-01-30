@@ -7,12 +7,14 @@ from sklearn import datasets
 # Importing the classifiers.
 from sklearn import tree
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import ExtraTreesClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 from sklearn.ensemble import AdaBoostClassifier
+from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.neural_network import MLPClassifier
 from xgboost import XGBClassifier
 
@@ -53,6 +55,10 @@ classifier_name='Random Forest'
 classifier=RandomForestClassifier()
 models[classifier_name]=classifier
 
+classifier_name='Extra Trees'
+classifier=ExtraTreesClassifier()
+models[classifier_name]=classifier
+
 classifier_name='5 Neighbors'
 classifier=KNeighborsClassifier(n_neighbors=5)
 models[classifier_name]=classifier
@@ -83,6 +89,10 @@ models[classifier_name]=classifier
 
 classifier_name='Ada Boost'
 classifier=AdaBoostClassifier()
+models[classifier_name]=classifier
+
+classifier_name="Gradiant Boost"
+classifier=GradientBoostingClassifier()
 models[classifier_name]=classifier
 
 classifier_name='Neural Net'
